@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineFlix Hub</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #1c1c1e;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            text-shadow: 0 0 5px #ffd700, 0 0 20px #ffd700, 0 0 40px #ffd700;
+            font-size: 2.8rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        main {
+            padding: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .movie-card {
+            width: 300px;
+            background-color: #1c1c1e;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.5s ease, filter 0.3s ease;
+        }
+
+        .movie-card h3 {
+            margin: 1rem 0 0.5rem;
+            font-size: 1.5rem;
+            color: #ffd700;
+            text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
+        }
+
+        .movie-card p {
+            margin: 0 1rem 1rem;
+            color: #aaa;
+        }
+
+        .rating {
+            font-weight: bold;
+            color: #ffc107;
+        }
+
+        footer {
+            background-color: #1c1c1e;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 0;
+            text-shadow: 0 0 5px #ffd700;
+        }
+
+        /* Trailer Modal */
+        #trailer-section {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #trailer {
+            width: 80%;
+            max-width: 900px;
+            height: 500px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        #close-trailer {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 0 15px red;
+            transition: background-color 0.3s ease;
+        }
+
+        #close-trailer:hover {
+            background-color: darkred;
+        }
+
+        /* Glittery Cursor Effect */
+        body {
+            cursor: none;
+        }
+
+        #glitter-cursor {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 1) 0%, rgba(255, 215, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            animation: sparkle 1.5s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                transform: scale(1) translate(-50%, -50%);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5) translate(-50%, -50%);
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Glitter Cursor -->
+    <div id="glitter-cursor"></div>
+
+    <header>
+        CineFlix Hub
+    </header>
+    <main>
+        <!-- Animal -->
+        <div class="movie-card" data-trailer="https://www.youtube.com/embed/Dydmpfo68DA">
+            <img src="pictures/animal.jpg" alt="Animal Poster">
+            <h3>Animal (2024)</h3>
+            <p>A gripping tale of family, revenge, and redemption.</p>
+            <p class="rating">Rating: ★★★★☆ (8.7/10)</p>
+        </div>
+        <!-- Sacred Games -->
+        <div class="movie-card" data-trailer="https://www.youtube.com/embed/w-Xe8gLBc5I">
+            <img src="pictures/sacred games.jpg" alt="Sacred Games Poster">
+            <h3>Sacred Games (2018)</h3>
+            <p>An epic thriller exploring Mumbai's underworld.</p>
+            <p class="rating">Rating: ★★★★★ (9.2/10)</p>
+        </div>
+        <!-- Wednesday -->
+        <div class="movie-card" data-trailer="https://www.youtube.com/embed/Di310WS8zLk">
+            <img src="pictures/wednesday.jpg" alt="Wednesday Poster">
+            <h3>Wednesday (2022)</h3>
+            <p>A quirky mystery starring Wednesday Addams.</p>
+            <p class="rating">Rating: ★★★★☆ (8.5/10)</p>
+        </div>
+        <!-- Heeramandi -->
+        <div class="movie-card" data-trailer="https://www.youtube.com/embed/WvzZYynDkwA">
+            <img src="pictures/heeramandi.jpg" alt="Heeramandi Poster">
+            <h3>Heeramandi (2024)</h3>
+            <p>A stunning period drama exploring courtesans' lives.</p>
+            <p class="rating">Rating: ★★★★★ (9.0/10)</p>
+        </div>
+        <!-- Money Heist -->
+        <div class="movie-card" data-trailer="https://www.youtube.com/embed/_InqQJRqGW4">
+            <img src="pictures/money hiest.jpg" alt="Money Heist Poster">
+            <h3>Money Heist (2017)</h3>
+            <p>A thrilling heist drama led by the Professor.</p>
+            <p class="rating">Rating: ★★★★★ (8.8/10)</p>
+        </div>
+    </main>
+
+    <!-- Trailer Section -->
+    <div id="trailer-section">
+        <iframe id="trailer" allowfullscreen></iframe>
+        <button id="close-trailer">×</button>
+    </div>
+    <footer>
+        &copy; 2024 CineFlix Hub. All rights reserved.
+    </footer>
+
+    <script>
+        // Glitter Cursor Effect
+        const glitterCursor = document.getElementById("glitter-cursor");
+        document.addEventListener("mousemove", (e) => {
+            glitterCursor.style.left = `${e.clientX}px`;
+            glitterCursor.style.top = `${e.clientY}px`;
+        });
+
+        // Movie Trailer Functionality
+        const movieCards = document.querySelectorAll(".movie-card");
+        const trailerSection = document.getElementById("trailer-section");
+        const trailer = document.getElementById("trailer");
+        const closeTrailerButton = document.getElementById("close-trailer");
+
+        movieCards.forEach((card) => {
+            card.addEventListener("click", () => {
+                const trailerURL = card.dataset.trailer;
+                trailer.src = trailerURL;
+                trailerSection.style.display = "flex";
+            });
+        });
+
+        closeTrailerButton.addEventListener("click", () => {
+            trailerSection.style.display = "none";
+            trailer.src = ""; // Stop the video
+        });
+    </script>
+</body>
+</html>

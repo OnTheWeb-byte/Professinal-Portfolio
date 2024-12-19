@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie & TV Show Listings</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: #444;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 0.5rem;
+        }
+
+        .movie-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .movie-card img {
+            max-width: 150px;
+            border-radius: 8px;
+        }
+
+        .movie-card .info {
+            flex: 1;
+        }
+
+        .movie-card h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .rating {
+            font-weight: bold;
+            color: #ff9800;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        /* Trailer Modal */
+        #trailer-section {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.9);
+            width: 80%;
+            max-width: 1000px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #trailer {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        #close-trailer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 15px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 50px;
+        }
+
+        #close-trailer:hover {
+            background-color: darkred;
+        }
+
+        /* Sparkle Cursor Effect */
+        #sparkle {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 80%);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            animation: sparkle 1s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1) translate(-50%, -50%);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.7) translate(-50%, -50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sparkle Cursor -->
+    <div id="sparkle"></div>
+
+    <header>
+        <h1>Movie & TV Show Listings</h1>
+    </header>
+    <main>
+        <section>
+            <h2>🎥 Popular Movies & Series</h2>
+            <!-- Sacred Games -->
+            <div class="movie-card" data-trailer="https://www.youtube.com/embed/w-Xe8gLBc5I">
+                <img src="images/sacred games.jpg" alt="Sacred Games Poster">
+                <div class="info">
+                    <h3>Sacred Games (2018)</h3>
+                    <p>An epic thriller exploring Mumbai's underworld and secrets of the past.</p>
+                    <p class="rating">Rating: ★★★★★ (9.2/10)</p>
+                </div>
+            </div>
+            <!-- Wednesday -->
+            <div class="movie-card" data-trailer="https://www.youtube.com/embed/Di310WS8zLk">
+                <img src="images/wednesday.jpg" alt="Wednesday Poster">
+                <div class="info">
+                    <h3>Wednesday (2022)</h3>
+                    <p>A quirky mystery starring Wednesday Addams navigating a magical school.</p>
+                    <p class="rating">Rating: ★★★★☆ (8.5/10)</p>
+                </div>
+            </div>
+            <!-- Heeramandi -->
+            <div class="movie-card" data-trailer="https://www.youtube.com/embed/WvzZYynDkwA">
+                <img src="images/heeramandi.jpg" alt="Heeramandi Poster">
+                <div class="info">
+                    <h3>Heeramandi (2024)</h3>
+                    <p>A stunning period drama exploring the lives of courtesans in pre-Independence India.</p>
+                    <p class="rating">Rating: ★★★★★ (9.0/10)</p>
+                </div>
+            </div>
+            <!-- Money Heist -->
+            <div class="movie-card" data-trailer="https://www.youtube.com/embed/_InqQJRqGW4">
+                <img src="images/money hiest.jpg" alt="Money Heist Poster">
+                <div class="info">
+                    <h3>Money Heist (2017)</h3>
+                    <p>A thrilling heist drama as the Professor leads a team of robbers with unique skills.</p>
+                    <p class="rating">Rating: ★★★★★ (8.8/10)</p>
+                </div>
+            </div>
+            <!-- Animal -->
+            <div class="movie-card" data-trailer="https://www.youtube.com/embed/8FkLRUJj-o0">
+                <img src="images/animal.jpg" alt="Animal Poster">
+                <div class="info">
+                    <h3>Animal (2024)</h3>
+                    <p>Ranbir Kapoor stars in a gripping tale of family, revenge, and redemption.</p>
+                    <p class="rating">Rating: ★★★★☆ (8.7/10)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trailer Section -->
+        <section id="trailer-section">
+            <iframe id="trailer" allowfullscreen></iframe>
+            <button id="close-trailer">×</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Movie & TV Show Listings</p>
+    </footer>
+
+    <script>
+        // Sparkle Cursor Effect
+        const sparkle = document.getElementById("sparkle");
+        document.addEventListener("mousemove", (e) => {
+            sparkle.style.left = `${e.clientX}px`;
+            sparkle.style.top = `${e.clientY}px`;
+        });
+
+        // Movie Trailer Functionality
+        const movieCards = document.querySelectorAll(".movie-card");
+        const trailerSection = document.getElementById("trailer-section");
+        const trailer = document.getElementById("trailer");
+        const closeTrailerButton = document.getElementById("close-trailer");
+
+        movieCards.forEach((card) => {
+            card.addEventListener("click", () => {
+                const trailerURL = card.dataset.trailer;
+                trailer.src = trailerURL;
+                trailerSection.style.display = "block";
+            });
+        });
+
+        closeTrailerButton.addEventListener("click", () => {
+            trailerSection.style.display = "none";
+            trailer.src = ""; // Stop the video
+        });
+    </script>
+</body>
+</html>
